@@ -1,6 +1,6 @@
 class BoardMuseSNative extends BoardMuseS {
 
-    private PacketLossTrackerGanglionSBLE packetLossTrackerGanglionNative;
+    private PacketLossTrackerGanglionBLE packetLossTrackerGanglionNative;
     private String boardName;
     private int firmwareVersion = 0;
 
