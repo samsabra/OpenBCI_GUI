@@ -91,6 +91,7 @@ boolean reinitRequested = false;
 final int NCHAN_CYTON = 8;
 final int NCHAN_CYTON_DAISY = 16;
 final int NCHAN_GANGLION = 4;
+final int NCHAN_MUSES = 5;
 
 //choose where to get the EEG data
 final int DATASOURCE_CYTON = 0; // new default, data from serial with Accel data CHIP 2014-11-03
@@ -98,6 +99,8 @@ final int DATASOURCE_GANGLION = 1;  //looking for signal from OpenBCI board via 
 final int DATASOURCE_PLAYBACKFILE = 2;  //playback from a pre-recorded text file
 final int DATASOURCE_SYNTHETIC = 3;  //Synthetically generated data
 final int DATASOURCE_STREAMING = 5;
+final int DATASOURCE_MUSES = 100;
+
 public int eegDataSource = -1; //default to none of the options
 final static int NUM_ACCEL_DIMS = 3;
 
@@ -635,6 +638,10 @@ void initSystem() {
                     controlPanel.streamingBoardBox.getPort()
                     );
             println("OpenBCI_GUI: Init session using Streaming data source");
+        case DATASOURCE_MUSES:
+            /* TODO complete this * /
+            //currentBoard = new BoardMuseS();
+            println("OpenBCI_GUI: Init session using Muse S data source");
         default:
             break;
     }
