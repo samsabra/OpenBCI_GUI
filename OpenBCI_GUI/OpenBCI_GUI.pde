@@ -639,8 +639,10 @@ void initSystem() {
                     );
             println("OpenBCI_GUI: Init session using Streaming data source");
         case DATASOURCE_MUSES:
-            /* TODO complete this * /
-            //currentBoard = new BoardMuseS();
+            String MuseSName = (String)(controlPanel.bleBox.bleList.getItem(controlPanel.bleBox.bleList.activeItem).get("headline"));
+            String MuseSMac = controlPanel.bleBox.bleMACAddrMap.get(MuseSName);
+            println("MAC address for MuseS is " + MuseSMac);
+            currentBoard = new BoardMuseSNative(MuseSName, showUpgradePopup);
             println("OpenBCI_GUI: Init session using Muse S data source");
         default:
             break;
