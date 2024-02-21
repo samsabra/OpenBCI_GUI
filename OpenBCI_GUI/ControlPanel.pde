@@ -259,7 +259,7 @@ class ControlPanel {
                 }
             } else if (eegDataSource == DATASOURCE_STREAMING) {
                 streamingBoardBox.draw();
-            } else if (eegDataSource == BoardIds.MUSE_S_BOARD) {
+            } else if (eegDataSource == DATASOURCE_MUSES) {
                 if (selectedProtocol == BoardProtocol.NONE) {
                     interfaceBoxGanglion.draw();
                 } else {
