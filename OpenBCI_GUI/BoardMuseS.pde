@@ -51,10 +51,10 @@ class BoardMuseSNative extends BoardMuseS {
     @Override
     protected PacketLossTracker setupPacketLossTracker() {
         if (firmwareVersion == 2) {
-            packetLossTrackerGanglionNative = new PacketLossTrackerMGanglionBLE2(getSampleIndexChannel(), getTimestampChannel());
+            packetLossTrackerGanglionNative = new PacketLossTrackerGanglionBLE2(getSampleIndexChannel(), getTimestampChannel());
         }
         else if (firmwareVersion == 3) {
-            packetLossTrackerGanglionNative = new PacketLossTrackerMGanglionBLE3(getSampleIndexChannel(), getTimestampChannel());
+            packetLossTrackerGanglionNative = new PacketLossTrackerGanglionBLE3(getSampleIndexChannel(), getTimestampChannel());
         }
 
         packetLossTrackerGanglionNative.setAccelerometerActive(isAccelerometerActive());
