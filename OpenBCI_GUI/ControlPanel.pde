@@ -259,6 +259,20 @@ class ControlPanel {
                 }
             } else if (eegDataSource == DATASOURCE_STREAMING) {
                 streamingBoardBox.draw();
+            } else if (eegDataSource == BoardIds.MUSE_S_BOARD) {
+                if (selectedProtocol == BoardProtocol.NONE) {
+                    interfaceBoxGanglion.draw();
+                } else {
+                    interfaceBoxGanglion.draw();
+                    if (selectedProtocol == BoardProtocol.NATIVE_BLE) {
+                        bleBox.y = interfaceBoxGanglion.y + interfaceBoxGanglion.h;
+                        dataLogBoxGanglion.y = bleBox.y + bleBox.h;
+                        bleBox.draw();
+                    }
+                    bfStreamerBoxGanglion.y = dataLogBoxGanglion.y + dataLogBoxGanglion.h;
+                    bfStreamerBoxGanglion.draw();
+                    dataLogBoxGanglion.draw(); //Drawing here allows max file size dropdown to be drawn on top
+                }
             }
         }
 
@@ -296,6 +310,8 @@ class ControlPanel {
             s = dataLogBoxCyton.getSessionTextfieldString();
         } else if (eegDataSource == DATASOURCE_GANGLION) {
             s = dataLogBoxGanglion.getSessionTextfieldString();
+        } else if (eegDataSource == DATASOURCE_MUSES) {
+            s = dataLogBoxGanglion.getSessionTextfieldString();
         } else {
             s = directoryManager.getFileNameDateTime();
         }
@@ -315,6 +331,8 @@ class ControlPanel {
             dataLogger.setSessionName(controlPanel.dataLogBoxGanglion.getSessionTextfieldString());
         } else if (eegDataSource == DATASOURCE_SYNTHETIC) {
             dataLogger.setSessionName(directoryManager.getFileNameDateTime());
+        } else if (eegDataSource == DATASOURCE_MUSES) {
+            dataLogger.setSessionName(controlPanel.dataLogBoxGanglion.getSessionTextfieldString());
         }
     }
 
@@ -329,7 +347,9 @@ class ControlPanel {
             brainflowStreamer = bfStreamerBoxGanglion.getBrainFlowStreamerString();
         } else if (eegDataSource == DATASOURCE_SYNTHETIC) {
             brainflowStreamer = bfStreamerBoxSynthetic.getBrainFlowStreamerString();
-        }
+        } else if (eegDataSource == DATASOURCE_MUSES) {
+            brainflowStreamer = bfStreamerBoxSynthetic.getBrainFlowStreamerString();
+        } 
     }
 
     private boolean getIsBrainFlowSteamerDefaultFileOutput() {
@@ -340,7 +360,9 @@ class ControlPanel {
             b = bfStreamerBoxGanglion.getIsBrainFlowStreamerDefaultLocation();
         } else if (eegDataSource == DATASOURCE_SYNTHETIC) {
             b = bfStreamerBoxSynthetic.getIsBrainFlowStreamerDefaultLocation();
-        }
+        } else if (eegDataSource == DATASOURCE_MUSES) {
+            b = bfStreamerBoxSynthetic.getIsBrainFlowStreamerDefaultLocation();
+        } 
         return b;
     }
 
@@ -399,6 +421,7 @@ class DataSourceBox {
         // sourceList.padding = 9;
         sourceList.addItem("CYTON (live)", DATASOURCE_CYTON);
         sourceList.addItem("GANGLION (live)", DATASOURCE_GANGLION);
+        sourceList.addItem("MUSE S (live)", DATASOURCE_MUSES);
         sourceList.addItem("PLAYBACK (from file)", DATASOURCE_PLAYBACKFILE);
         sourceList.addItem("SYNTHETIC (algorithmic)", DATASOURCE_SYNTHETIC);
         sourceList.addItem("STREAMING (from external)", DATASOURCE_STREAMING);
